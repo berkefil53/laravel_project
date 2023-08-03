@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Başlıksız Belge</title>
+    <title>1 Belge</title>
 </head>
 
 <body>
@@ -25,6 +25,5 @@
         </table>
     </form>
 @endguest
-
 </body>
 </html>

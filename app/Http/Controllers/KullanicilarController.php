@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Kullanicilar;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 class KullanicilarController extends Controller
 {
     /*
@@ -35,7 +38,28 @@ class KullanicilarController extends Controller
         auth()->logout();
         return redirect()->route('login')->with('login','Çıkış Başarıyla Gerçekleşti. ');
     }
+    public function addUser(Request $request)
+    {
+            $validated=$request->validate([
+                'username' => 'required|alphaNum|unique:users',
+                'user_title' => 'required',
+                'password' => 'required|min:6'
+            ]);
+            /*$existingUser = Kullanicilar::where('username', $request->username)->first();
+            if ($existingUser) {
+                return back();
+            }
+            $data = $request->only('username', 'user_title','password');
+            $data['password']=Hash::make($data['password']);*/
+           $validated['password']=Hash::make($validated['password']);
+           $islem=Kullanicilar::create($validated);
+           if (!$islem)
+           {
+               return back()->withErrors('e');
+           }
+           return redirect()->route('main')->with('addUser', 'Kayıt İşlemi Başarılı. ');
 
+    }
 
 
 

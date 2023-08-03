@@ -16,6 +16,7 @@ class CreateUsers extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username');
+            $table->string('user_title');
             $table->string('password');
             $table->timestamps();
         });
@@ -28,6 +29,6 @@ class CreateUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_users');
+        Schema::dropIfExists('users');
     }
 }

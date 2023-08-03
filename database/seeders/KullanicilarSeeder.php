@@ -18,10 +18,12 @@ class KullanicilarSeeder extends Seeder
         DB::table('users')->insert(
             [[
                 'username'=>'berkefil53',
+                'user_title'=>'batırhan berk',
                 'password'=>Hash::make('ERWERWE')
             ],
                 [
                     'username'=>'admin',
+                    'user_title'=>'admin',
                     'password'=>Hash::make('admin155')
                 ]]
 

@@ -24,4 +24,7 @@ Route::get('/', function () {
     return view('login');})->name('login');
 Route::post('login',[KullanicilarController::class,'checkLogin'])->name('loginPost');
 Route::get('main',function (){return view('main');})->name('main')->middleware('auth');
-Route::get('logout',[KullanicilarController::class,'logout'])->name('logout');
+Route::get('logout',[KullanicilarController::class,'logout'])->name('logout')->middleware('auth');
+Route::post('addUser', function () {return view('addUser');})->name('addUser');
+Route::post('main',[KullanicilarController::class,'addUser'])->name('saveAddUser');
+Route::get('addUser', function () {return view('addUser');})->name('addUser');

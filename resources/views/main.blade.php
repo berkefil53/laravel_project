@@ -7,10 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-xcxcxxc
 @auth
-
+    <p align="right">
     <a href="{{route('logout')}}">Çıkış</a>
+    </p>
 @endauth
+<form method="POST" action="{{route('addUser')}}">
+    @csrf
+<input type="submit" name="addUser" value="Kullanıcı Ekle"/>
+</form>
 </body>
 </html>

@@ -14,7 +14,11 @@
 @endauth
 <form method="POST" action="{{route('addUser')}}">
     @csrf
-<input type="submit" name="addUser" value="Kullanıcı Ekle"/>
+    <input type="submit" name="addUser" value="Kullanıcı Ekle"/>
+</form>
+<form method="POST" action="{{route('listUserPost')}}">
+    @csrf
+    <input type="submit" name="listUser" value="Kullanıcı Listele"/>
 </form>
 </body>
 </html>

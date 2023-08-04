@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>1 Belge</title>
+    <title>1 ppp</title>
 </head>
 
 <body>
@@ -24,6 +24,7 @@
             <td></td><td><input type="submit" value="Giriş" name="login"></td>
         </table>
     </form>
+@else
+    <script> window.location.href = "{{ route('main') }}";</script>
 @endguest
-</body>
 </html>

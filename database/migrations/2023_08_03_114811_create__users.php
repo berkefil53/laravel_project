@@ -18,6 +18,7 @@ class CreateUsers extends Migration
             $table->string('username');
             $table->string('user_title');
             $table->string('password');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

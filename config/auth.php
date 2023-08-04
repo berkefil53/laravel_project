@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'kullanicilar',
+        'passwords' => 'users',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'kullanicilar',
+            'provider' => 'users',
         ],
     ],
 
@@ -60,7 +60,7 @@ return [
     */
 
     'providers' => [
-        'kullanicilar' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
@@ -87,8 +87,8 @@ return [
     */
 
     'passwords' => [
-        'kullanicilar' => [
-            'provider' => 'kullanicilar',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

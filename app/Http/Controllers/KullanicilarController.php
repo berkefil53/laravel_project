@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Kullanicilar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -52,15 +51,25 @@ class KullanicilarController extends Controller
             $data = $request->only('username', 'user_title','password');
             $data['password']=Hash::make($data['password']);*/
            $validated['password']=Hash::make($validated['password']);
-           $islem=Kullanicilar::create($validated);
+           $islem=User::create($validated);
            if (!$islem)
            {
-               return back()->withErrors('e');
+               return back()->withErrors('Kullanıcı adı veya şifre yanlış.');
            }
            return redirect()->route('main')->with('addUser', 'Kayıt İşlemi Başarılı. ');
 
     }
-
-
-
+    function listUser()
+    {
+        $users = User::all();
+        return view('listUser', compact('users'));
+    }
+    public function deleteSelectedUsers(Request $request)
+    {
+        $selectedUsers = $request->input('selectedUsers', []);
+        dd($selectedUsers);
+        // Soft delete işlemini yap
+        User::whereIn('id', $selectedUsers)->delete();
+        return redirect()->back()->with('success', 'Seçili kullanıcılar başarıyla silindi.');
+    }
 }

@@ -35,4 +35,6 @@ Route::post('deleteSelectedUsers', [KullanicilarController::class, 'deleteSelect
 Route::get('editUser/{id}',[KullanicilarController::class,'editUser'])->name('editUser');
 Route::get('/edit-selected-user/{id}', [KullanicilarController::class,'editUser'])->name('edit-selected-user');
 Route::post('/update-selected-user/{id}', [KullanicilarController::class,'updateSelectedUser'])->name('update-selected-user');
+Route::get('deleteUser/{id}', [KullanicilarController::class, 'deleteUser'])->name('deleteUser');
+
 });

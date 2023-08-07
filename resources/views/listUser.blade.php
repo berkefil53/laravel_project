@@ -25,7 +25,7 @@
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->user_title }}</td>
                 <td><a href="{{route('editUser',['id'=>$user->id])}}">Düzenle</a></td>
-                <td><input type="submit" name="deleteUser" value="Sil"/> </td>
+                <td><a href="{{route('deleteUser',['id'=>$user->id])}}">Sil</a></td>
             </tr>
         @endforeach
         <tr align="center"><td colspan="5"><input type="submit" value="Tümünü Sil"/></td></tr>

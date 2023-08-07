@@ -124,4 +124,9 @@ class KullanicilarController extends Controller
             return redirect()->back()->with('error', 'Kullanıcı bulunamadı.');
         }
     }
+    public function deleteUser(int $id)
+    {
+        User::where('id',$id)->delete();
+        return redirect()->route('listUserPost');
+    }
 }

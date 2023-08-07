@@ -63,7 +63,7 @@ class KullanicilarController extends Controller
     function listUser()
     {
         $users = User::all();
-        return view('listUser', compact('users'));
+        return view('user/listUser', compact('users'));
     }
 
     public function deleteSelectedUsers(Request $request)
@@ -80,7 +80,7 @@ class KullanicilarController extends Controller
 
         if ($user) {
             // Eğer kullanıcı bulunduysa, düzenleme formunu göster
-            return view('editUser', compact('user'));
+            return view('user/editUser', compact('user'));
         } else {
             // Kullanıcı bulunamazsa hata mesajı göster veya başka bir işlem yap
             return redirect()->back()->with('error', 'Kullanıcı bulunamadı.');

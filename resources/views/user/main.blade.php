@@ -24,6 +24,10 @@
         @csrf
         <input type="submit" name="listUser" value="Kullanıcı Listele"/>
     </form>
+    <form method="POST" action="{{route('categoryAddPost')}}">
+        @csrf
+        <input type="submit" name="categoryAdd" value="Kategori"/>
+    </form>
 @endguest
 </body>
 </html>

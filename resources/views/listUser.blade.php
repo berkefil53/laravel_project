@@ -24,7 +24,7 @@
                 <td><input type="checkbox" name="selectedUsers[]" value="{{ $user->id }}"/></td>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->user_title }}</td>
-                <td><input type="submit" name="editUser" value="Düzenle"/> </td>
+                <td><a href="{{route('editUser',['id'=>$user->id])}}">Düzenle</a></td>
                 <td><input type="submit" name="deleteUser" value="Sil"/> </td>
             </tr>
         @endforeach

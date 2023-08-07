@@ -12,13 +12,18 @@
     <a href="{{route('logout')}}">Çıkış</a>
     </p>
 @endauth
-<form method="POST" action="{{route('addUser')}}">
-    @csrf
-    <input type="submit" name="addUser" value="Kullanıcı Ekle"/>
-</form>
-<form method="POST" action="{{route('listUserPost')}}">
-    @csrf
-    <input type="submit" name="listUser" value="Kullanıcı Listele"/>
-</form>
+@guest
+    <script> window.location.href = "{{ route('main') }}";</script>
+
+@else
+    <form method="POST" action="{{route('addUser')}}">
+        @csrf
+        <input type="submit" name="addUser" value="Kullanıcı Ekle"/>
+    </form>
+    <form method="POST" action="{{route('listUserPost')}}">
+        @csrf
+        <input type="submit" name="listUser" value="Kullanıcı Listele"/>
+    </form>
+@endguest
 </body>
 </html>

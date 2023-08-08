@@ -32,6 +32,10 @@
         @csrf
         <input type="submit" name="categoryList" value="Kategori Listele"/>
     </form>
+    <form method="POST" action="{{route('productAddPost')}}">
+        @csrf
+        <input type="submit" name="productList" value="Ürün Ekle"/>
+    </form>
 @endguest
 @if($errors->any())
     <div class="alert alert-danger">

@@ -9,7 +9,7 @@ class CategoryController extends Controller
     public function categoryAdd(Request $request)
     {
         $rules = [
-            'categoryTitle' => 'required|regex:/^[a-zA-ZığüşöçĞÜŞÖÇ\s]+$/u|unique:category|regex:/^\S*$/',
+            'categoryTitle' => 'required|regex:/^[\d\p{L}\s]+$/u|unique:category|regex:/^\S*$/',
             'categoryDescription' => 'required',
             'status' => 'required'
         ];
@@ -55,7 +55,7 @@ class CategoryController extends Controller
     public function updateSelectedCategory(Request $request, $id)
     {
         $rules = [
-            'categoryTitle' => ['required','regex:/^[a-zA-ZığüşöçĞÜŞÖÇ\s]+$/u','unique:category,categoryTitle,'.$id,'regex:/^\S*$/'],
+            'categoryTitle' => ['required','regex:/^[\d\p{L}\s]+$/u','unique:category,categoryTitle,'.$id],
             'categoryDescription' => ['required'],
             'status' => ['required'],
         ];
@@ -63,6 +63,7 @@ class CategoryController extends Controller
         $messages = [
             'categoryTitle.required' => 'Kategori Adı Alanı Gereklidir.',
             'categoryTitle.regex' => 'Kategori Adında Boşluk Bulunamaz.',
+            'categoryTitle.unique' => 'Aynı Kategoriden Var.',
             'categoryDescription.required' => 'Kategori Açıklama alanı gereklidir.',
             'status.required' => 'Statü Boş Bırakılamaz.',
         ];

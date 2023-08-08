@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KullanicilarController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,5 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-selected-category/{id}', [CategoryController::class,'editCategory'])->name('edit-selected-category');
     Route::post('/update-selected-category/{id}', [CategoryController::class,'updateSelectedCategory'])->name('update-selected-category');
     Route::get('deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
-
+    Route::get('productAdd', function () {return view('product/productAdd');})->name('productAdd');
+    Route::post('productAddSave',[ProductController::class,'productAdd'])->name('saveAddProduct');
+    Route::post('productAdd',[ProductController::class,'showAddProductPage'])->name('productAddPost');
 });

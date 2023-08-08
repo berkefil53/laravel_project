@@ -18,6 +18,7 @@ class CreateCategory extends Migration
             $table->string('categoryTitle')->unique();
             $table->string('categoryDescription');
             $table->char('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

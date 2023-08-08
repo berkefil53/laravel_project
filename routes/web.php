@@ -40,4 +40,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('categoryAdd', function () {return view('category/categoryAdd');})->name('categoryAdd');
     Route::post('categoryAddSave',[CategoryController::class,'categoryAdd'])->name('saveAddCategory');
     Route::post('categoryAdd', function () {return view('category/categoryAdd');})->name('categoryAddPost');
+    Route::get('categoryList', [CategoryController::class,'categoryList'])->name('categoryList');
+    Route::post('categoryListSave',[CategoryController::class,'categoryList'])->name('saveListCategory');
+    Route::post('categoryList', [CategoryController::class,'categoryList'])->name('categoryListPost');
+    Route::get('editCategory/{id}',[CategoryController::class,'editCategory'])->name('editCategory');
+    Route::get('/edit-selected-category/{id}', [CategoryController::class,'editCategory'])->name('edit-selected-category');
+    Route::post('/update-selected-category/{id}', [CategoryController::class,'updateSelectedCategory'])->name('update-selected-category');
 });

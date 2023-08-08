@@ -17,8 +17,15 @@
         <tr><td></td><td><input type="submit" name="ekle" value="ekle"/></td></tr>
     </table>
 </form>
-@if($errors)
-    <p>{{$errors->first()}}</p>
+@if($errors->any())
+    <div class="alert alert-danger">
+        <h4>Hata!</h4>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 </body>
 </html>

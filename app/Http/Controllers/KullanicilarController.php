@@ -45,12 +45,6 @@ class KullanicilarController extends Controller
             'user_title' => 'required',
             'password' => 'required|min:6'
         ]);
-        /*$existingUser = Kullanicilar::where('username', $request->username)->first();
-        if ($existingUser) {
-            return back();
-        }
-        $data = $request->only('username', 'user_title','password');
-        $data['password']=Hash::make($data['password']);*/
         $validated['password'] = Hash::make($validated['password']);
         $islem = User::create($validated);
         if (!$islem) {
@@ -130,3 +124,4 @@ class KullanicilarController extends Controller
         return redirect()->route('listUserPost');
     }
 }
+

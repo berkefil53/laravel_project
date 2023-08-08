@@ -26,8 +26,22 @@
     </form>
     <form method="POST" action="{{route('categoryAddPost')}}">
         @csrf
-        <input type="submit" name="categoryAdd" value="Kategori"/>
+        <input type="submit" name="categoryAdd" value="Kategori Ekle"/>
+    </form>
+    <form method="POST" action="{{route('categoryListPost')}}">
+        @csrf
+        <input type="submit" name="categoryList" value="Kategori Listele"/>
     </form>
 @endguest
+@if($errors->any())
+    <div class="alert alert-danger">
+        <h4>Hata!</h4>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 </body>
 </html>

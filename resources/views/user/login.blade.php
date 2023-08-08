@@ -7,9 +7,7 @@
 
 <body>
 
-@if(session()->has('login')&&session('login')=='fail')
-    Login İşlemi Başarısız.
-@endif
+
 @guest
     <form method="POST" action="{{route('loginPost')}}">
         @csrf
@@ -27,4 +25,7 @@
 @else
     <script> window.location.href = "{{ route('main') }}";</script>
 @endguest
+@if(session()->has('login')&&session('login')=='fail')
+    Login İşlemi Başarısız.
+@endif
 </html>

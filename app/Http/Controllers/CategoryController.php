@@ -55,7 +55,7 @@ class CategoryController extends Controller
     public function updateSelectedCategory(Request $request, $id)
     {
         $rules = [
-            'categoryTitle' => 'required|regex:/^[a-zA-ZığüşöçĞÜŞÖÇ\s]+$/u|regex:/^\S*$/',
+            'categoryTitle' => ['required','regex:/^[a-zA-ZığüşöçĞÜŞÖÇ\s]+$/u','unique:category,categoryTitle,'.$id,'regex:/^\S*$/'],
             'categoryDescription' => ['required'],
             'status' => ['required'],
         ];
@@ -82,5 +82,12 @@ class CategoryController extends Controller
         } else {
             return redirect()->back()->with('error', 'Kategori bulunamadı.');
         }
+    }
+
+    public function deleteCategory(int $id)
+    {
+        Category::where('id',$id)->delete();
+        return redirect()->route('categoryListPost');
+
     }
 }

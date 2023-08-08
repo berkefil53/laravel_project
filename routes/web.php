@@ -46,4 +46,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('editCategory/{id}',[CategoryController::class,'editCategory'])->name('editCategory');
     Route::get('/edit-selected-category/{id}', [CategoryController::class,'editCategory'])->name('edit-selected-category');
     Route::post('/update-selected-category/{id}', [CategoryController::class,'updateSelectedCategory'])->name('update-selected-category');
+    Route::get('deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
+
 });

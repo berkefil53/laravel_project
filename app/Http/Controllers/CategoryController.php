@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -55,13 +56,14 @@ class CategoryController extends Controller
     public function updateSelectedCategory(Request $request, $id)
     {
         $rules = [
-            'categoryTitle' => 'required|regex:/^[a-zA-ZığüşöçĞÜŞÖÇ\s]+$/u|regex:/^\S*$/',
+            'categoryTitle' => 'required|regex:/^[a-zA-ZığüşöçĞÜŞÖÇ\s]+$/u|unique:category|regex:/^\S*$/',
             'categoryDescription' => ['required'],
             'status' => ['required'],
         ];
 
         $messages = [
             'categoryTitle.required' => 'Kategori Adı Alanı Gereklidir.',
+            'categoryTitle.unique' => 'Bu Kategori Adı Zaten Kullanılıyor.',
             'categoryTitle.regex' => 'Kategori Adında Boşluk Bulunamaz.',
             'categoryDescription.required' => 'Kategori Açıklama alanı gereklidir.',
             'status.required' => 'Statü Boş Bırakılamaz.',
@@ -82,5 +84,7 @@ class CategoryController extends Controller
         } else {
             return redirect()->back()->with('error', 'Kategori bulunamadı.');
         }
+
     }
+
 }

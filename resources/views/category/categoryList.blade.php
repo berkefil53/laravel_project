@@ -19,7 +19,12 @@
         <tr>
             <td>{{ $categories->categoryTitle }}</td>
             <td>{{ $categories->categoryDescription }}</td>
-            <td>{{ $categories->status }}</td>
+                @if($categories->status)
+                        <td>Aktif</td>
+
+                @else
+                        <td>İnaktif</td>
+                @endif
             <td><a href="{{route('editCategory',['id'=>$categories->id])}}">Düzenle</a></td>
         </tr>
     @endforeach

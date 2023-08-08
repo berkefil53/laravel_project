@@ -51,4 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('productAdd', function () {return view('product/productAdd');})->name('productAdd');
     Route::post('productAddSave',[ProductController::class,'productAdd'])->name('saveAddProduct');
     Route::post('productAdd',[ProductController::class,'showAddProductPage'])->name('productAddPost');
+    Route::get('productList', [ProductController::class,'productList'])->name('productList');
+    Route::post('productListSave',[ProductController::class,'productList'])->name('saveListProduct');
+    Route::post('productList', [ProductController::class,'productList'])->name('productListPost');
 });

@@ -37,4 +37,11 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('product/productAdd', ['categories'=> $categories]);
     }
+    public function productList()
+    {
+        $products = Product::all();
+        $categories = Category::all();
+        return view('product/productList', ['products' => $products], ['categories'=> $categories]);
+    }
+
 }

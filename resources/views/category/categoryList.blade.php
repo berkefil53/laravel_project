@@ -23,6 +23,7 @@
                 <td>Aktif</td>
             @else
                 <td>İnaktif</td>
+
             @endif
             <td><a href="{{route('editCategory',['id'=>$categories->id])}}">Düzenle</a></td>
             <td><a onclick="return confirm('{{$categories->categoryTitle}} Kategorisini Silmek İstediğinden Emin Misin ?')" href="{{route('deleteCategory',['id'=>$categories->id])}} ">Sil</a></td>

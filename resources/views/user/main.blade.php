@@ -34,7 +34,11 @@
     </form>
     <form method="POST" action="{{route('productAddPost')}}">
         @csrf
-        <input type="submit" name="productList" value="Ürün Ekle"/>
+        <input type="submit" name="productAdd" value="Ürün Ekle"/>
+    </form>
+    <form method="POST" action="{{route('productListPost')}}">
+        @csrf
+        <input type="submit" name="productList" value="Ürün Listele"/>
     </form>
 @endguest
 @if($errors->any())

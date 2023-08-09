@@ -54,4 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('productList', [ProductController::class,'productList'])->name('productList');
     Route::post('productListSave',[ProductController::class,'productList'])->name('saveListProduct');
     Route::post('productList', [ProductController::class,'productList'])->name('productListPost');
+    Route::get('editProduct/{id}',[ProductController::class,'editProduct'])->name('editProduct');
+    Route::get('/edit-selected-product/{id}', [ProductController::class,'editProduct'])->name('edit-selected-product');
+    Route::post('/update-selected-category/{id}', [ProductController::class,'updateSelectedProduct'])->name('update-selected-product');
+    Route::get('deleteProduct/{id}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
 });

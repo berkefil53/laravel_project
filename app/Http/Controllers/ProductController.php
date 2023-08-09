@@ -43,5 +43,53 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('product/productList', ['products' => $products], ['categories'=> $categories]);
     }
+    public function editProduct($id)
+    {
+        $products = Product::withTrashed()->find($id);
+        $categories = Category::all();
+        if ($products) {
+            return view('product/editProduct', ['products' => $products], ['categories'=> $categories]);
+        } else {
+            return redirect()->back()->with('error', 'Ürün bulunamadı.');
+        }
+    }
+
+    public function updateSelectedProduct(Request $request, $id)
+    {
+        $rules = [
+            'productTitle' => 'required',
+            'productCategoryId' => 'nullable',
+            'barcode'=>'required',
+            'productStatus' => 'required'
+        ];
+
+        $messages = [
+            'productTitle.required' => '1',
+            'productCategoryId.required' => '2',
+            'barcode.required' => '3',
+            'productStatus.required' => '4',
+        ];
+        $this->validate($request, $rules, $messages);
+
+        $products = Product::withTrashed()->find($id);
+
+        if ($products) {
+            $products->productTitle = $request->input('productTitle');
+            $products->productCategoryId = $request->input('productCategoryId');
+            $products->barcode = $request->input('barcode');
+            $products->productStatus = $request->input('productStatus');
+            $products->save();
+
+            return redirect()->route('productList')->with('success', 'Ürün başarıyla düzenlendi.');
+        } else {
+            return redirect()->back()->with('error', 'Ürün bulunamadı.');
+        }
+    }
+    public function deleteProduct(int $id)
+    {
+        Product::where('id',$id)->delete();
+        return redirect()->route('productListPost');
+
+    }
 
 }

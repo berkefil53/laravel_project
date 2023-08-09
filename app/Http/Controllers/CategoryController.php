@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -87,6 +88,12 @@ class CategoryController extends Controller
 
     public function deleteCategory(int $id)
     {
+        $products = Product::where('productCategoryId', $id)->get();
+
+        foreach ($products as $product) {
+            $product->productCategoryId = null;
+            $product->save();
+        }
         Category::where('id',$id)->delete();
         return redirect()->route('categoryListPost');
 

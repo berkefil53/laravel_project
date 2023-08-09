@@ -13,6 +13,8 @@
     <td>Ürün Kategorisi</td>
     <td>Barkod</td>
     <td>Ürün Durumu</td>
+    <td></td>
+    <td></td>
     </thead>
     @foreach($products as $product)
         <tr>
@@ -33,7 +35,9 @@
             @else
                 <td>İnaktif</td>
             @endif
-                   </tr>
+            <td><a href="{{route('editProduct',['id'=>$product->id])}}">Düzenle</a></td>
+            <td><a onclick="return confirm('{{$product->productTitle}} Ürününü Silmek İstediğinden Emin Misin ?')" href="{{route('deleteProduct',['id'=>$product->id])}} ">Sil</a></td>
+        </tr>
     @endforeach
 </table>
 </body>

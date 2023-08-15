@@ -1,29 +1,20 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kategori Düzenleme</title>
-</head>
-<body>
+@extends('layouts.mainLayout')
+@section('title')
+    Kategori Düzenleme
+@endsection
+@section('content')
 <form action="{{ route('update-selected-category', ['id' => $category->id]) }}" method="post">
     @csrf
-    <table>
-        <tr>
-            <td>Kategori Adı </td><td> :    <input type="text" name="categoryTitle" value="{{ $category->categoryTitle }}" placeholder="Kategori Adı"></td>
-        </tr>
-        <tr>
-            <td>Kategori Açıklama </td><td> :     <input type="text" name="categoryDescription" value="{{ $category->categoryDescription }}" placeholder="Kategori Açıklama"></td>
-        </tr>
-        <td>Statü</td>
-        <td>: <input type="radio" id="html" name="status" value="1" {{ $category->status ? 'checked' : '' }}>
+        Kategori Adı:
+        <p> <input class="form-control" type="text" name="categoryTitle"  value="{{ $category->categoryTitle }}" placeholder="Kategori Adı"></p>
+        Kategori Açıklama:
+        <p> <input class="form-control" type="text" name="categoryDescription" value="{{ $category->categoryDescription }}" placeholder="Kategori Açıklama"/></p>
+        Statü:
+        <p><input type="radio" id="html" name="status" value="1" {{ $category->status ? 'checked' : '' }} class="form-check-input">
             <label for="html"> Active </label>
             <input type="radio" id="css" name="status" value="0" {{ $category->status  ? '' : 'checked' }}>
-            <label for="css"> Inactive </label></td>
-        <tr><td></td><td>    <button type="submit">Kategoriyi Güncelle</button></td></tr>
-    </table>
+            <label for="css"> Inactive </label></p>
+            <p> <input class="btn btn-success" type="submit" name="ekle" value="Kategori Güncelle"/></p>
 </form>
 @if($errors->any())
     <div class="alert alert-danger">
@@ -35,5 +26,4 @@
         </ul>
     </div>
 @endif
-</body>
-</html>
+@endsection

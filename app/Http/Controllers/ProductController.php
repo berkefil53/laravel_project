@@ -18,10 +18,9 @@ class ProductController extends Controller
         ];
 
         $messages = [
-            'productTitle.required' => '1',
-            'productCategoryId.required' => '2',
-            'barcode.required' => '3',
-            'productStatus.required' => '4',
+            'productTitle.required' => 'Ürün Adı Boş Bırakılamaz.',
+            'barcode.required' => 'Barkod Boş Bırakılamaz.',
+            'productStatus.required' => 'Statü Boş Bırakılamaz.',
         ];
 
         $validated = $this->validate($request, $rules, $messages);
@@ -33,9 +32,11 @@ class ProductController extends Controller
 
         return redirect()->route('main')->with('productAdd', 'Kayıt İşlemi Başarılı.');
     }
-    public function showAddProductPage(){
+    public function showAddProductPage()
+    {
         $categories = Category::all();
-        return view('product/productAdd', ['categories'=> $categories]);
+
+        return view('product/productAdd', ['categories' => $categories]);
     }
     public function productList()
     {
@@ -64,10 +65,9 @@ class ProductController extends Controller
         ];
 
         $messages = [
-            'productTitle.required' => '1',
-            'productCategoryId.required' => '2',
-            'barcode.required' => '3',
-            'productStatus.required' => '4',
+            'productTitle.required' => 'Ürün Adı Boş Bırakılamaz.',
+            'barcode.required' => 'Barkod Boş Bırakılamaz.',
+            'productStatus.required' => 'Statü Boş Bırakılamaz.',
         ];
         $this->validate($request, $rules, $messages);
 

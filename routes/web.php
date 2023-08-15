@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\KullanicilarController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 /*
@@ -19,25 +19,25 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return view('/login');
 });
-Route::post('/login', [KullanicilarController::class,'checkLogin']);
+Route::post('/login', [UserController::class,'checkLogin']);
 Route::get('/main', function(){return view('/main');});
 */
 Route::get('/login', function () { return view('user/login'); })->name('login');
 Route::get('/', function () { return view('user/main'); });
-Route::post('login',[KullanicilarController::class,'checkLogin'])->name('loginPost');
+Route::post('login',[UserController::class,'checkLogin'])->name('loginPost');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('main',function (){return view('user/main');})->name('main');
-    Route::get('logout',[KullanicilarController::class,'logout'])->name('logout');
+    Route::get('logout',[UserController::class,'logout'])->name('logout');
     Route::post('addUser', function () {return view('user/addUser');})->name('addUserPost');
-    Route::post('main',[KullanicilarController::class,'addUser'])->name('saveAddUser');
+    Route::post('main',[UserController::class,'addUser'])->name('saveAddUser');
     Route::get('addUser', function () {return view('user/addUser');})->name('addUser');
-    Route::post('listUser',[KullanicilarController::class,'listUser'])->name('listUserPost');
-    Route::get('listUser',[KullanicilarController::class,'listUser'])->name('listUserN');
-    Route::post('deleteSelectedUsers', [KullanicilarController::class, 'deleteSelectedUsers'])->name('deleteSelectedUsers');
-    Route::get('editUser/{id}',[KullanicilarController::class,'editUser'])->name('editUser');
-    Route::get('/edit-selected-user/{id}', [KullanicilarController::class,'editUser'])->name('edit-selected-user');
-    Route::post('/update-selected-user/{id}', [KullanicilarController::class,'updateSelectedUser'])->name('update-selected-user');
-    Route::get('deleteUser/{id}', [KullanicilarController::class, 'deleteUser'])->name('deleteUser');
+    Route::post('listUser',[UserController::class,'listUser'])->name('listUserPost');
+    Route::get('listUser',[UserController::class,'listUser'])->name('listUserN');
+    Route::post('deleteSelectedUsers', [UserController::class, 'deleteSelectedUsers'])->name('deleteSelectedUsers');
+    Route::get('editUser/{id}',[UserController::class,'editUser'])->name('editUser');
+    Route::get('/edit-selected-user/{id}', [UserController::class,'editUser'])->name('edit-selected-user');
+    Route::post('/update-selected-user/{id}', [UserController::class,'updateSelectedUser'])->name('update-selected-user');
+    Route::get('deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
     Route::get('categoryAdd', function () {return view('category/categoryAdd');})->name('categoryAdd');
     Route::post('categoryAddSave',[CategoryController::class,'categoryAdd'])->name('saveAddCategory');
     Route::post('categoryAdd', function () {return view('category/categoryAdd');})->name('categoryAddPost');
@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-selected-category/{id}', [CategoryController::class,'editCategory'])->name('edit-selected-category');
     Route::post('/update-selected-category/{id}', [CategoryController::class,'updateSelectedCategory'])->name('update-selected-category');
     Route::get('deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
-    Route::get('productAdd', function () {return view('product/productAdd');})->name('productAdd');
+    Route::get('productAdd', [ProductController::class,'showAddProductPage'])->name('productAdd');
     Route::post('productAddSave',[ProductController::class,'productAdd'])->name('saveAddProduct');
     Route::post('productAdd',[ProductController::class,'showAddProductPage'])->name('productAddPost');
     Route::get('productList', [ProductController::class,'productList'])->name('productList');
@@ -56,6 +56,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('productList', [ProductController::class,'productList'])->name('productListPost');
     Route::get('editProduct/{id}',[ProductController::class,'editProduct'])->name('editProduct');
     Route::get('/edit-selected-product/{id}', [ProductController::class,'editProduct'])->name('edit-selected-product');
-    Route::post('/update-selected-category/{id}', [ProductController::class,'updateSelectedProduct'])->name('update-selected-product');
+    Route::post('/update-selected-product/{id}', [ProductController::class,'updateSelectedProduct'])->name('update-selected-product');
     Route::get('deleteProduct/{id}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
 });

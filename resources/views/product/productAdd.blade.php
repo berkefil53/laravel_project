@@ -1,31 +1,27 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.mainLayout')
+@section('title')
+    Ürün Ekleme
+@endsection
+@section('content')
 <form method="POST" action="{{route('saveAddProduct')}}" >
     @csrf
-    <table border="1px">
-        <tr><td>Ürün Adı</td><td><input type="text" name="productTitle"></td></tr>
-        <tr><td>Kategori ID</td><td>
-                <select name="productCategoryId" id="productCategoryId">
-                    <option value="{{null}}"> </option>
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}"> {{$category->id}} - {{$category->categoryTitle}} </option>
-                    @endforeach
-                </select></td></tr>
-        <tr><td>Barkod</td><td><input type="text" name="barcode"></tr>
-        <tr><td>Ürün Durumu</td><td><input type="radio" id="html" name="productStatus" value="1">
-                  <label>Active</label>
-                  <input type="radio" id="css" name="productStatus" value="0">
-                  <label>İnactive</label></td></tr>
-    <tr><td></td><td> <input type="submit" value="Ekle"></td></tr>
-    </table>
+         Ürün Adı:
+        <p> <input class="form-control" type="text" name="productTitle"/></p>
+        Kategori:
+    <p><select name="productCategoryId" id="productCategoryId" class="form-select">
+            <option value="{{null}}"> </option>
+            @foreach ($categories as $category)
+                <option value="{{$category->id}}"> {{$category->id}} - {{$category->categoryTitle}} </option>
+            @endforeach
+        </select></p>
+        Barkod:
+        <p><input type="text" name="barcode" class="form-control"></p>
+        Ürün Durumu:
+        <p><input type="radio" id="html" name="productStatus" value="1" class="form-check-input">
+              <label>Active</label>
+              <input type="radio" id="css" name="productStatus" value="0">
+              <label>İnactive</label></p>
+        <input type="submit" value="Ekle" class="btn btn-success">
 </form>
 @if($errors->any())
     <div class="alert alert-danger">
@@ -37,5 +33,4 @@
         </ul>
     </div>
 @endif
-</body>
-</html>
+@endsection
